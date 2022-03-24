@@ -28,9 +28,6 @@ def contact():
 def error_denied():
     abort(401)
 
-@app.route('/error_internal')
-def error_internal():
-    return render_template('template.html', name='ERROR 505'), 505
 
 @app.route('/error_not_found')
 def error_not_found():
