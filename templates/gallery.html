@@ -1,0 +1,111 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Galeria</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<img src="{{ url_for('static', filename='cat.png') }}" alt="Cat">-->
+<!--<br>-->
+<!--<img src="{{ url_for('static', filename='horse.png') }}" alt="Horse">-->
+<!--<br>-->
+<!--<img src="{{ url_for('static', filename='dog.png') }}" alt="Dog">-->
+<!--<br>-->
+<!--<img src="{{ url_for('static', filename='dino.png') }}" alt="Dino">-->
+<!--<br>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='bomba.ico') }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <div class="pologowaniu" id="wylogujdiv">
+        <form action= "{{ url_for('home') }}" method="post">
+        <button type='submit' id='wyloguj'>Wróć do strony głównej</button>
+        </form>
+     </div>
+
+    <div id="obrazki" class="pologowaniu">
+        <!-- <form action="/wLewo?_method=DELETE" method="POST"> -->
+        <!-- wszystkie obrazki zostały ręcznie wykonane, proszę się nie śmiać -->
+        <label><img src="{{ url_for('static', filename='cat.png') }}" alt="Cat" id="kot" class="img">
+        <input type="radio" name="wybor" class="kot" value="kot"></label>
+        <label><img src="{{ url_for('static', filename='horse.png') }}" alt="Horse" id="kon" class="img">
+        <input type="radio" name="wybor" class="kon" value="kon"></label>
+        <label><img src="{{ url_for('static', filename='dog.png') }}" alt="Dog" id="pies" class="img">
+        <input type="radio" name="wybor" class="pies" value="pies"></label>
+        <label><img src="{{ url_for('static', filename='dino.png') }}" alt="Dino" id="smok" class="img">
+        <input type="radio" name="wybor" class="smok" value="smok"></label>
+        <img src="{{ url_for('static', filename='bomba.png') }}" alt="bomba" id="bomba2" class="bomba">
+        <img src="{{ url_for('static', filename='bomba.png') }}" alt="bomba" id="bomba3" class="bomba">
+        <img src="{{ url_for('static', filename='bomba.png') }}" alt="bomba" id="bomba4" class="bomba">
+        <img src="{{ url_for('static', filename='bomba.png') }}" alt="bomba" id="bomba5" class="bomba">
+        <img src="{{ url_for('static', filename='bomba.png') }}" alt="bomba" id="bomba1" class="bomba" onclick="bombaa()">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch1" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch2" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch22" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch222" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch3" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch33" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch333" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch4" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch44" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch444" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch5" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch55" class="wybuch">
+        <img src="{{ url_for('static', filename='wybuch.gif') }}" alt="wybuch" id="wybuch555" class="wybuch">
+
+</div>
+<div id="obrazkii">
+</div>
+
+
+<div id="przyciski" class="pologowaniu">
+
+    <center><button onclick="wGore()">˄</button><br>
+
+        <button onclick="wLewo()">˂</button>   <!-- <button type="submit">˂</button> -->
+    <!-- </form> -->
+    <button onclick="wDol()">˅</button>
+    <button onclick="wPrawo()">˃</button></center>
+
+
+
+</div>
+
+<script src="{{ url_for('static', filename='jquery-1.7.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+
+
+        $(document).keydown(function(abc) {
+
+        switch (abc.which)
+        {
+        case 37: wLewo();
+        break;
+        case 38: wGore();
+        break;
+        case 39: wPrawo();
+        break;
+        case 40: wDol();
+        break;
+
+        }
+        })
+
+        })
+</script>
+    <script src="{{ url_for('static', filename='Script.js') }}"></script>
+
+
+</body>
+</html>

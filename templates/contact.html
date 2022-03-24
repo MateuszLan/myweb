@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='bomba.ico') }}">
+
+    <meta charset="UTF-8">
+    <title>Kontakt</title>
+</head>
+<body>
+<center>
+<h3>Skontaktujesz się za mną pod tym adresem mail:</h3><br>
+<a href="mailto:mateusz_langaj@wsb.pl">mateusz_langaj@wsb.pl</a>
+</center>
+<div class="pologowaniu" id="wylogujdiv">
+       <form action= "{{ url_for('home') }}" method="post">
+        <button type='submit' id='wyloguj'>Wróć do strony głównej</button>
+        </form>
+     </div>
+</body>
+</html>
