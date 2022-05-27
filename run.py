@@ -18,6 +18,10 @@ def about():
 def gallery():
     return render_template('gallery.html')
 
+@app.route("/gallery2", methods=['GET', 'POST'])
+def gallery2():
+    return render_template('gallery2.html')
+
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
