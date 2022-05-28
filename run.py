@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for, abort, make_response
-
+from flask import Flask, render_template, url_for, abort, make_response, request
+from AzureDB import AzureDB
 app = Flask(__name__)
 
 
@@ -22,6 +22,13 @@ def gallery():
 def gallery2():
     return render_template('gallery2.html')
 
+@app.route("/ksiega", methods=['GET', 'POST'])
+def ksiega():
+    with AzureDB() as a:
+        if request.method == 'POST':
+            a.azureAddData(imie=request.form['imie'])
+        data = a.azureGetData()
+    return render_template("Ksiega.html", data=data)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -42,6 +49,7 @@ def error_not_found():
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
+
 
 
 if __name__ == "__main__":
