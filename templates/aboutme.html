@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='bomba.ico') }}">
-    <meta charset="UTF-8">
-    <title>O mnie</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% set active_page = "about" -%}
+{% block body %}
 <center>
 <h3>O mnie:</h3><br>
 Jestem Mateusz, student Wyżeszej Szkoły Bankowej we Wrocławiu! :)
 </center>
-<div class="pologowaniu" id="wylogujdiv">
-       <form action= "{{ url_for('home') }}" method="post">
-        <button type='submit' id='wyloguj'>Wróć do strony głównej</button>
-        </form>
-     </div>
-</body>
-</html>
+
+{% endblock %}

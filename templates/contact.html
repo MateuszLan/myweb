@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='bomba.ico') }}">
-
-    <meta charset="UTF-8">
-    <title>Kontakt</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Kontakt{% endblock %}
+{% set active_page = "contact" -%}
+{% block body %}
 <center>
 <h3>Skontaktujesz się za mną pod tym adresem mail:</h3><br>
 <a href="mailto:mateusz76781@wsb.pl">mateusz76781@wsb.pl</a>
 <form method="post" action=""><br/><br/>
-     Nick:     <input type="text"><br/><br/>
-     Email:   <input type="email"><br/><br/>
-     <textarea placeholder="Wiadomość" style="width:220px"></textarea><br/><br/>
+     <input type="text" placeholder="Nick"><br/><br/>
+     <input type="email" placeholder="Email"><br/><br/>
+     <textarea placeholder="Wiadomość"></textarea><br/><br/>
      <input type="button" value="Wyślij">
 </form>
 </center>
-<div class="pologowaniu" id="wylogujdiv">
-       <form action= "{{ url_for('home') }}" method="post">
-        <button type='submit' id='wyloguj'>Wróć do strony głównej</button>
-        </form>
-     </div>
-</body>
-</html>
+{% endblock %}
