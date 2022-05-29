@@ -24,9 +24,9 @@ def github_login():
         return render_template('index.html')
     return '<h1>Request failed!</h1>'
 
-@app.route('/login/github', methods=['GET', 'POST'])
-def login():
-    return render_template('index.html')
+# @app.route('/login/github', methods=['GET', 'POST'])
+# def login():
+#     return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
