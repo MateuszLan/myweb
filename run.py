@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, abort, make_response, request
+from flask import Flask, render_template, abort, make_response, request
 from AzureDB import AzureDB
 app = Flask(__name__)
 
