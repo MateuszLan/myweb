@@ -16,13 +16,15 @@ app.register_blueprint(github_blueprint, url_prefix='/login')
 
 @app.route('/')
 def github_login():
-    if not github.authorized:
-        return '<h1>Requesttt failed!</h1>'
-    else:
-        account_info = github.get('/user')
-    if account_info.ok:
-        return render_template('index.html')
-    return '<h1>Request failed!</h1>'
+    account_info = github.get('/user')
+    while account_info.ok:
+        if not github.authorized:
+            return redirect(url_for('github.login'))
+        else:
+            account_info = github.get('/user')
+        if account_info.ok:
+            return render_template('index.html')
+        return '<h1>Request failed!</h1>'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
