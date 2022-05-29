@@ -1,7 +1,27 @@
-from flask import Flask, render_template, abort, make_response, request
+from flask import Flask, render_template, abort, make_response, request, redirect, url_for
 from AzureDB import AzureDB
+from flask_dance.contrib.github import make_github_blueprint, github
+import secrets
+import os
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16) #generujemy sekretny klucz aplikacji
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '0' #zezwalamy na polaczenie w lokalnym srodowisku bez https
+github_blueprint = make_github_blueprint(
+client_id="7703588b0ebee5a9e41e", #tu wklek swoj wygenerowany id z github
+client_secret="89f998afca3c2770756b027585c6c5b4921c6de3",#tu wklej swoj wygenerowany client secret z github
+)
+app.register_blueprint(github_blueprint, url_prefix='/login')
 
+@app.route('/')
+def github_login():
+    if not github.authorized:
+        return redirect(url_for('github.login'))
+    else:
+        account_info = github.get('/user')
+    if account_info.ok:
+        account_info_json = account_info.json()
+        return render_template('index.html')
+    return '<h1>Request failed!</h1>'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -53,5 +73,5 @@ def not_found_error(error):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
 
