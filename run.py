@@ -19,10 +19,11 @@ def github_login():
     if not github.authorized:
         return redirect(url_for('github.login'))
     else:
-        account_info = github.get('/user')
-    if account_info.ok:
         return render_template('gallery.html')
-    return '<h1>Request failed!</h1>'
+    #     account_info = github.get('/user')
+    # if account_info.ok:
+    #     return render_template('gallery.html')
+    # return '<h1>Request failed!</h1>'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
