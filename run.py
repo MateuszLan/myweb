@@ -14,9 +14,6 @@ client_secret="5f7d3186445e6a31b8ce385576e340b70eed1df0",#tu wklej swoj wygenero
 )
 app.register_blueprint(github_blueprint, url_prefix='/login')
 
-if github.authorized:
-    render_template('index.html')
-
 @app.route('/')
 def github_login():
     if not github.authorized:
@@ -24,13 +21,8 @@ def github_login():
     else:
         account_info = github.get('/user')
     if account_info.ok:
-        return render_template('index.html')
+        return render_template('gallery.html')
     return '<h1>Request failed!</h1>'
-
-# @app.route('/login/github', methods=['GET', 'POST'])
-# def login():
-#     if github.authorized:
-#         return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
