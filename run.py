@@ -26,7 +26,7 @@ def gallery2():
 def ksiega():
     with AzureDB() as a:
         if request.method == 'POST':
-            a.azureAddData(imie=request.form['imie'])
+            a.azureAddData(imie=request.form['imie'], text=request.form['text'])
         data = a.azureGetData()
     return render_template("Ksiega.html", data=data)
 
