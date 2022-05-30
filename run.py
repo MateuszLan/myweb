@@ -4,7 +4,7 @@ from AzureDB import AzureDB
 # from flask_dance.contrib.github import make_github_blueprint, github
 # import secrets
 # import os
-# app = Flask(__name__)
+app = Flask(__name__)
 # app.secret_key = secrets.token_hex(16) #generujemy sekretny klucz aplikacji
 # os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #zezwalamy na polaczenie w lokalnym srodowisku bez https
 # github_blueprint = make_github_blueprint(
