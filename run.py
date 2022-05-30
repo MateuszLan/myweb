@@ -49,7 +49,8 @@ def ksiega():
     #     if request.method == 'POST':
     #         a.azureAddData(imie=request.form['imie'], text=request.form['text'])
     #     data = a.azureGetData()
-    return render_template("Ksiega.html", data=data)
+    # data = data
+    return render_template("Ksiega.html")
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
