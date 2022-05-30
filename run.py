@@ -45,10 +45,10 @@ def gallery2():
 
 @app.route("/ksiega", methods=['GET', 'POST'])
 def ksiega():
-    with AzureDB() as a:
-        if request.method == 'POST':
-            a.azureAddData(imie=request.form['imie'], text=request.form['text'])
-        data = a.azureGetData()
+    # with AzureDB() as a:
+    #     if request.method == 'POST':
+    #         a.azureAddData(imie=request.form['imie'], text=request.form['text'])
+    #     data = a.azureGetData()
     return render_template("Ksiega.html", data=data)
 
 @app.route('/contact', methods=['GET', 'POST'])
