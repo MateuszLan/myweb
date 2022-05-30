@@ -35,7 +35,6 @@ def about():
     return render_template('aboutme.html')
 
 
-
 @app.route("/gallery", methods=['GET', 'POST'])
 def gallery():
     return render_template('gallery.html')
