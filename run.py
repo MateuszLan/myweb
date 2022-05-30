@@ -1,5 +1,5 @@
 from flask import Flask, render_template, abort, make_response, request, redirect, url_for
-from AzureDB import AzureDB
+from AzureDB import AzureDB as a
 
 # from flask_dance.contrib.github import make_github_blueprint, github
 # import secrets
@@ -46,8 +46,8 @@ def gallery2():
 @app.route("/ksiega", methods=['GET', 'POST'])
 def ksiega():
     # with AzureDB() as a:
-    #     if request.method == 'POST':
-    #         a.azureAddData(imie=request.form['imie'], text=request.form['text'])
+    if request.method == 'POST':
+        a.azureAddData(imie=request.form['imie'], text=request.form['text'])
     #     data = a.azureGetData()
     # data = data
     return render_template("Ksiega.html")
