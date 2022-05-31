@@ -155,7 +155,7 @@ var gora1=kot.offsetTop;
          // tlo.style.setProperty('transition-duration','3s');
          // tlo.style.setProperty('transition-property','all');
          tlo.style.setProperty('display','block');
-         tlo.style.setProperty('BACKGROUND-IMAGE',"url({{ url_for('static', filename='tlo.png') }})");
+         tlo.style.setProperty('BACKGROUND-IMAGE','url({{ url_for(\'static\', filename=\'tlo.png\') }})');
       }, 4000);
    }
     if(k==0 || i==4&&

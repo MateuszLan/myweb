@@ -1,4 +1,5 @@
 from flask import Flask, render_template, abort, make_response, request, redirect, url_for
+import requests
 from AzureDB import AzureDB
 
 from flask_dance.contrib.github import make_github_blueprint, github
@@ -8,10 +9,10 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(16) #generujemy sekretny klucz aplikacji
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #zezwalamy na polaczenie w lokalnym srodowisku bez https
 github_blueprint = make_github_blueprint(
-#client_id="7703588b0ebee5a9e41e", #lokalny
-#client_secret="89f998afca3c2770756b027585c6c5b4921c6de3",#tu wklej swoj wygenerowany client secret z github
-client_id="9bb0e5f0bfba6aea4e5e", #tu wklek swoj wygenerowany id z github (do chmury)
-client_secret="5f7d3186445e6a31b8ce385576e340b70eed1df0",#tu wklej swoj wygenerowany client secret z github(do chmury)
+client_id="7703588b0ebee5a9e41e", #lokalny
+client_secret="89f998afca3c2770756b027585c6c5b4921c6de3",#tu wklej swoj wygenerowany client secret z github
+#client_id="9bb0e5f0bfba6aea4e5e", #tu wklek swoj wygenerowany id z github (do chmury)
+#client_secret="5f7d3186445e6a31b8ce385576e340b70eed1df0",#tu wklej swoj wygenerowany client secret z github(do chmury)
 )
 app.register_blueprint(github_blueprint, url_prefix='/login')
 
@@ -22,10 +23,10 @@ def github_login():
     else:
         account_info = github.get('/user')
     if account_info.ok:
-        return render_template('gallery.html')
+        return render_template('index.html')
     return '<h1>Request failed!</h1>'
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
 
@@ -55,6 +56,24 @@ def ksiega():
 def contact():
     return render_template('contact.html')
 
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    if request.method == 'GET':
+        return render_template('test.html')
+    if request.method == 'POST':
+        info = requests.get('http://localhost:5000/')
+        dane = info.json()
+        zmienna = request.form['Nr']
+        Wykonawca = dane[zmienna]['Wykonawca']
+        Tytul = dane[zmienna]['Tytul']
+        Format = dane[zmienna]['Format']
+        Odp1 = "Wykonawca: %s " % (Wykonawca)
+        Odp2 = "Tytuł: %s " % (Tytul)
+        Odp3 = "Format : %s " % (Format)
+        return render_template('test.html', data1=Odp1, data2=Odp2, data3=Odp3)
+    return render_template('test.html')
+
+
 
 @app.route('/error_denied')
 def error_denied():
@@ -74,5 +93,5 @@ def not_found_error(error):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=80)
 
