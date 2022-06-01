@@ -16,12 +16,85 @@
 <div class="col-sm-6">
 <h1><b>Sekcja komentarzy:</b></h1><br>
     {% for result in data %}
-<p>{{result.name }} napisał(a): {{result.text }} </p>
+
+    <form action= "" method="post">
+    <img class="icon " alt="Edycja" title="Edycja komentarza" src="{{ url_for('static', filename='edycja.png') }}" style="width: 15px;
+    height: 15px;" onclick="display('{{result.text }}', '{{result.name }}', 'edit')">
+
+<p>{{result.name }} napisał(a): {{result.text }} <img class="icon " alt="Delete" title="Usuwanie komentarza" src="{{ url_for('static', filename='delete.png') }}" style="width: 15px;
+    height: 15px;" onclick="display('{{result.text }}', '{{result.name }}', 'del')"> </p>
+        <span class='show' style="display:none">{{result.name }}</span>
+        <textarea class='show' style="display:none" name="text2">{{result.text }}</textarea>
+        <button class='show' style="display:none" type='submit'>Edytuj</button>
+        <button class='show' style="display:none" type='submit'>Usuń</button>
+        <input type="hidden" class='show' name="text1">
+        <input type="hidden" class='show' name="nick">
+        <input type="hidden" class='show' name="typ">
+<!--        style="display:none"-->
+    </form>
+
 {% else %}
 <p>Brak wpisów </p>
 {% endfor %}
 
 </div>
 </div>
+<script>
+    function display(val, imie, typ){
+        var elements = document.getElementsByClassName('show');
+        var i;
+        for (i = 0; i < elements.length; i+=7) {
+            if (elements[i].innerHTML==imie && elements[i+1].value==val){
+                if(typ=='edit'){
+                    if(elements[i+1].style.display == 'none'){
+                        elements[i+3].style.display = 'none';
+                        elements[i+1].style.display = 'block';
+                        elements[i+2].style.display = 'block';
+                        elements[i+4].value=val;
+                        elements[i+5].value=imie;
+                        elements[i+6].value=typ;
+                    }
+                    else{
+                        elements[i+1].style.display = 'none';
+                        elements[i+2].style.display = 'none';
+                    }
+                }
+                else{
+                    if(elements[i+3].style.display == 'none'){
+                        elements[i+3].style.display = 'block';
+                        elements[i+1].style.display = 'none';
+                        elements[i+2].style.display = 'none';
+                        elements[i+4].value=val;
+                        elements[i+5].value=imie;
+                        elements[i+6].value=typ;
+                    }
+                    else{
+                        elements[i+3].style.display = 'none';
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+<!--    function display(val){-->
+<!--        var elements = document.getElementsByClassName('show');-->
+<!--        var i;-->
+<!--        for (i = 0; i < elements.length; i++) {-->
+<!--        if (elements[i].value==val){-->
+<!--        if(elements[i].style.display == 'none'){-->
+<!--        elements[i].style.display = 'block';-->
+<!--        elements[i+1].style.display = 'block';}-->
+<!--        else{-->
+<!--            elements[i].style.display = 'none';-->
+<!--        elements[i+1].style.display = 'none';-->
+<!--        }-->
+<!--}-->
+<!--}-->
+<!--    }-->
+
+</script>
 
 {% endblock %}

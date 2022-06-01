@@ -48,7 +48,14 @@ def gallery2():
 def ksiega():
     with AzureDB() as a:
         if request.method == 'POST':
-            a.azureAddData(imie=request.form['imie'], text=request.form['text'])
+            imie = request.form.get('imie')
+            if not imie:
+                if (request.form['typ'] == 'edit'):
+                    a.azureUPData(nick=request.form['nick'], text1=request.form['text1'], text2=request.form['text2'])
+                else:
+                    a.azureDeleteData(nick=request.form['nick'], text1=request.form['text1'])
+            else:
+                a.azureAddData(imie=request.form['imie'], text=request.form['text'])
         data = a.azureGetData()
     return render_template("Ksiega.html", data = data)
 
@@ -85,6 +92,10 @@ def error_not_found():
     response = make_response(render_template('template.html', name='ERROR 404'), 404)
     response.headers['X-Something'] = 'A value'
     return response
+
+# @app.route('/qwe')
+# def qwe():
+#     return "XD"
 
 @app.errorhandler(404)
 def not_found_error(error):
