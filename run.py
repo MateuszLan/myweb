@@ -6,7 +6,7 @@ from flask_dance.contrib.github import make_github_blueprint, github
 import secrets
 import os
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(16) #generujemy sekretny klucz aplikacji
+app.secret_key = secrets.token_hex(16)#generujemy sekretny klucz aplikacji
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #zezwalamy na polaczenie w lokalnym srodowisku bez https
 github_blueprint = make_github_blueprint(
 #client_id="7703588b0ebee5a9e41e", #lokalny
@@ -50,7 +50,7 @@ def ksiega():
         if request.method == 'POST':
             imie = request.form.get('imie')
             if not imie:
-                if (request.form['typ'] == 'edit'):
+                if request.form['typ'] == 'edit':
                     a.azureUPData(nick=request.form['nick'], text1=request.form['text1'], text2=request.form['text2'])
                 else:
                     a.azureDeleteData(nick=request.form['nick'], text1=request.form['text1'])
