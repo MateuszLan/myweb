@@ -7,7 +7,7 @@ import secrets
 import os
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)#generujemy sekretny klucz aplikacji
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #zezwalamy na polaczenie w lokalnym srodowisku bez https
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '0' #zezwalamy na polaczenie w lokalnym srodowisku bez https
 github_blueprint = make_github_blueprint(
 #client_id="7703588b0ebee5a9e41e", #lokalny
 #client_secret="89f998afca3c2770756b027585c6c5b4921c6de3",#tu wklej swoj wygenerowany client secret z github
