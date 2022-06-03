@@ -33,7 +33,7 @@ class AzureDB:
             self.cursor.execute('INSERT into data (name, text) values (\'' + imie + "', '" + text + "')")
             self.conn.commit()
 
-# zakomentowana funkcja usuwająca rekord z bazy gdzie name = Adam
+
     def azureDeleteData(self, nick, text1):
         self.cursor.execute("DELETE FROM data WHERE name = '"+nick+"' and text = '"+text1+"'")
         self.conn.commit()
