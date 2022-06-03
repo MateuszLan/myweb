@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='bomba.ico') }}">
-    <meta charset="UTF-8">
-    <title>BŁĄD 404</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}404{% endblock %}
+{% set active_page = "404" -%}
+{% block body %}
 <h1><b>Coś się popsuło, spróbuj jeszcze raz!</b></h1>
-</body>
-</html>
+{% endblock %}
