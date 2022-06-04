@@ -9,10 +9,10 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)#generujemy sekretny klucz aplikacji
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '0' #zezwalamy na polaczenie w lokalnym srodowisku bez https
 github_blueprint = make_github_blueprint(
-#client_id="7703588b0ebee5a9e41e", #lokalny
-#client_secret="89f998afca3c2770756b027585c6c5b4921c6de3",#tu wklej swoj wygenerowany client secret z github
-client_id="9bb0e5f0bfba6aea4e5e", #tu wklek swoj wygenerowany id z github (do chmury)
-client_secret="5f7d3186445e6a31b8ce385576e340b70eed1df0",#tu wklej swoj wygenerowany client secret z github(do chmury)
+#client_id="7703588b0ebee5a9e41e", #działa lokalnie (http://192.168.1.11:80)
+#client_secret="89f998afca3c2770756b027585c6c5b4921c6de3", #lokalnie
+client_id="9bb0e5f0bfba6aea4e5e", #(do chmury) (https://76781apka.azurewebsites.net)
+client_secret="5f7d3186445e6a31b8ce385576e340b70eed1df0", #chmura
 )
 app.register_blueprint(github_blueprint, url_prefix='/login')
 
@@ -68,7 +68,7 @@ def test():
     if request.method == 'GET':
         return render_template('test.html')
     if request.method == 'POST':
-        info = requests.get('https://restapi76781.azurewebsites.net')
+        info = requests.get('http://127.0.0.1:5000/')
         dane = info.json()
         zmienna = request.form['Nr']
         Wykonawca = dane[zmienna]['Wykonawca']
@@ -79,7 +79,6 @@ def test():
         Odp3 = "Format : %s " % (Format)
         return render_template('test.html', data1=Odp1, data2=Odp2, data3=Odp3)
     return render_template('test.html')
-
 
 
 @app.route('/error_denied')
@@ -100,7 +99,6 @@ def error_not_found():
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
-
 
 
 if __name__ == "__main__":
