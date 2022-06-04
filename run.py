@@ -68,7 +68,7 @@ def test():
     if request.method == 'GET':
         return render_template('test.html')
     if request.method == 'POST':
-        info = requests.get('http://localhost:5000/')
+        info = requests.get('https://restapi76781.azurewebsites.net')
         dane = info.json()
         zmienna = request.form['Nr']
         Wykonawca = dane[zmienna]['Wykonawca']
